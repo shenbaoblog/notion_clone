@@ -12,10 +12,14 @@
   "license": "ISC",
   "dependencies": {
     "express": "4.21.1",
+    "mongoose": "8.7.2",
     "nodemon": "3.1.7"
   },
   "volta": {
     "node": "16.20.2",
     "npm": "8.19.4"
+  },
+  "devDependencies": {
+    "dotenv": "16.4.5"
   }
 }
