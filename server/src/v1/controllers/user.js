@@ -30,10 +30,12 @@ exports.login = async (req, res) => {
     const user = await User.findOne({ username: username });
     if (!user) {
       return res.status(401).json({
-        errors: {
-          param: "username",
-          message: "ユーザーが無効です",
-        },
+        errors: [
+          {
+            param: "username",
+            msg: "ユーザーが無効です",
+          },
+        ],
       });
     }
 
@@ -43,14 +45,14 @@ exports.login = async (req, res) => {
       process.env.SECRET_KEY
     ).toString(CryptoJS.enc.Utf8);
 
-    console.log("decryptedPassword", decryptedPassword);
-    console.log("password", password);
     if (decryptedPassword !== password) {
       return res.status(401).json({
-        errors: {
-          param: "password",
-          message: "パスワードが無効です",
-        },
+        errors: [
+          {
+            param: "password",
+            msg: "パスワードが無効です",
+          },
+        ],
       });
     }
 
