@@ -23,6 +23,38 @@ const Memo = () => {
     };
     getMemo();
   }, [memoId]);
+
+  let timer;
+  const timeout = 1000;
+
+  const updateTitle = async (e) => {
+    clearTimeout(timer);
+    const newTitle = e.target.value;
+    setTitle(newTitle);
+
+    timer = setTimeout(async () => {
+      try {
+        await memoApi.update(memoId, { title: newTitle });
+      } catch (error) {
+        alert(error);
+      }
+    }, timeout);
+  };
+
+  const updateDescription = async (e) => {
+    clearTimeout(timer);
+    const newDescription = e.target.value;
+    setDescription(newDescription);
+
+    timer = setTimeout(async () => {
+      try {
+        await memoApi.update(memoId, { description: newDescription });
+      } catch (error) {
+        alert(error);
+      }
+    }, timeout);
+  };
+
   return (
     <>
       <Box
@@ -41,6 +73,7 @@ const Memo = () => {
       </Box>
       <Box sx={{ padding: "10px 50px" }}>
         <TextField
+          onChange={updateTitle}
           value={title}
           placeholder="無題"
           variant="outlined"
@@ -52,6 +85,7 @@ const Memo = () => {
           }}
         ></TextField>
         <TextField
+          onChange={updateDescription}
           value={description}
           placeholder="追加"
           variant="outlined"
