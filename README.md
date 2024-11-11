@@ -1,6 +1,6 @@
 # 環境構築
 
-## server
+## server（express）
 
 ```
 cd ./server
@@ -22,10 +22,12 @@ TOKEN_SECRET_KEY = "自作のシークレットキー"
 npm start
 ```
 
-## client
+## client（react）
 
 ```
 cd ./client
 npm i
 npm start
 ```
+
+http://localhost:3000/login
